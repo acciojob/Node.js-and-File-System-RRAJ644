@@ -17,12 +17,16 @@ rl.question('Enter the filename: ', (filename) => {
       }
 
       // Split the file content into an array of words
-      const words = data.split(' ')
+      const words = data.split(/\s+/) // Split by any whitespace (spaces, tabs, newlines)
 
-      // Filter out the specified word
-      const filteredWords = words.filter((item) => item !== word)
+      // Remove the word from the content, trimming punctuation around words
+      const filteredWords = words.filter((item) => {
+        // Trim punctuation and compare the words
+        const cleanedItem = item.replace(/[^\w\s]/g, '') // Remove punctuation
+        return cleanedItem !== word
+      })
 
-      // Join the filtered words back into a string
+      // Join the filtered words back into a string with proper spaces
       const updatedContent = filteredWords.join(' ')
 
       // Write the modified content back to the same file
