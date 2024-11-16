@@ -19,7 +19,7 @@ rl.question('Enter the filename: ', (filename) => {
 
       const words = data.split(' ')
       const filteredWords = words?.filter((item) => item !== word)
-      const updatedContent = words.join(' ')
+      const updatedContent = filteredWords.join(' ')
 
       fs.writeFile(filename, updatedContent, (err) => {
         if (err) {
